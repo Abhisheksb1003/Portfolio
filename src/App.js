@@ -265,7 +265,7 @@ function CodeCard() {
       <div className="cline ci"><span>],</span></div>
       <div className="cline ci"><span className="cs">openToWork</span><span>: </span><span className="cn">true</span><span>,</span></div>
       <div className="cline ci"><span className="cs">users</span><span>: </span><span className="cn">10_000</span><span>, </span><span className="cs">uptime</span><span>: </span><span className="cx">"99.9%"</span></div>
-      <div className="cline"><span>{'}'}</span><span className="cm"> // always building</span></div>
+      <div className="cline"><span>{'}'}</span><span className="cm"> always building</span></div>
     </div>
   );
 }
