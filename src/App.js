@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
-/* ═══════════════════════════════════════════════════════════════════
-   DATA (Updated Dates)
-═══════════════════════════════════════════════════════════════════ */
 const NAV_LINKS = ['About', 'Skills', 'Projects', 'Certifications', 'Contact'];
 
 const TIMELINE = [
@@ -153,14 +150,10 @@ const MARQUEE_ITEMS = [
 
 const ROLES = ['Frontend Developer', 'React.js Specialist', 'UI/UX Enthusiast', 'Open to New Roles ✨'];
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   HOOKS
-═══════════════════════════════════════════════════════════════════ */
 function useTypewriter(words, speed = 75, pause = 2000) {
   const [text, setText] = useState('');
-  const [wi, setWi]     = useState(0);
-  const [del, setDel]   = useState(false);
+  const [wi, setWi] = useState(0);
+  const [del, setDel] = useState(false);
 
   useEffect(() => {
     const current = words[wi];
@@ -194,15 +187,11 @@ function useReveal() {
   }, []);
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   CUSTOM CURSOR
-═══════════════════════════════════════════════════════════════════ */
 function Cursor() {
-  const dot   = useRef(null);
+  const dot = useRef(null);
   const trail = useRef(null);
-  const pos   = useRef({ x: 0, y: 0 });
-  const tpos  = useRef({ x: 0, y: 0 });
+  const pos = useRef({ x: 0, y: 0 });
+  const tpos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const onMove = e => { pos.current = { x: e.clientX, y: e.clientY }; };
@@ -212,13 +201,13 @@ function Cursor() {
     const animate = () => {
       if (dot.current) {
         dot.current.style.left = pos.current.x + 'px';
-        dot.current.style.top  = pos.current.y + 'px';
+        dot.current.style.top = pos.current.y + 'px';
       }
       tpos.current.x += (pos.current.x - tpos.current.x) * 0.12;
       tpos.current.y += (pos.current.y - tpos.current.y) * 0.12;
       if (trail.current) {
         trail.current.style.left = tpos.current.x + 'px';
-        trail.current.style.top  = tpos.current.y + 'px';
+        trail.current.style.top = tpos.current.y + 'px';
       }
       raf = requestAnimationFrame(animate);
     };
@@ -234,10 +223,6 @@ function Cursor() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   NAV
-═══════════════════════════════════════════════════════════════════ */
 function Nav({ scrolled }) {
   const go = id => {
     const el = document.getElementById(id);
@@ -265,10 +250,6 @@ function Nav({ scrolled }) {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   HERO CODE CARD
-═══════════════════════════════════════════════════════════════════ */
 function CodeCard() {
   return (
     <div className="code-card">
@@ -289,16 +270,11 @@ function CodeCard() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════════════════════════ */
 function Hero() {
   const role = useTypewriter(ROLES, 75, 2000);
 
   return (
     <section className="hero" id="home">
-      {/* LEFT */}
       <div className="hero-left">
         <div className="hero-badge">
           <span className="badge-dot" />
@@ -316,7 +292,7 @@ function Hero() {
 
         <p className="hero-desc">
           <strong>Frontend Developer</strong> with <span className="accent">1+ year</span> 
-          experience at Aspirant League,Certified in Full-Stack Development &amp; AI Literacy.
+          experience at Aspirant League, Certified in Full-Stack Development &amp; AI Literacy.
         </p>
 
         <div className="hero-btns">
@@ -344,7 +320,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* RIGHT */}
       <div className="hero-right-panel">
         <div className="hero-geo">
           <div className="hero-geo-ring" />
@@ -362,10 +337,6 @@ function Hero() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   MARQUEE
-═══════════════════════════════════════════════════════════════════ */
 function Marquee() {
   const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
   return (
@@ -382,10 +353,6 @@ function Marquee() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   ABOUT
-═══════════════════════════════════════════════════════════════════ */
 function About() {
   return (
     <div className="about-wrap" id="about">
@@ -396,7 +363,6 @@ function About() {
         </div>
 
         <div className="about-grid">
-          {/* avatar */}
           <div className="avatar-block reveal-l">
             <div className="avatar-box">
               <div className="av-mesh" />
@@ -421,7 +387,6 @@ function About() {
             </div>
           </div>
 
-          {/* content */}
           <div className="about-content reveal-r">
             <p className="about-intro">
               I'm a passionate <strong>Frontend Developer</strong> from Bangalore, India with{' '}
@@ -455,10 +420,6 @@ function About() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   SKILLS
-═══════════════════════════════════════════════════════════════════ */
 function Skills() {
   return (
     <div className="skills-wrap" id="skills">
@@ -488,10 +449,6 @@ function Skills() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   PROJECTS
-═══════════════════════════════════════════════════════════════════ */
 function Projects() {
   return (
     <div className="projects-outer" id="projects">
@@ -553,10 +510,6 @@ function Projects() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   CERTIFICATIONS
-═══════════════════════════════════════════════════════════════════ */
 function Certifications() {
   return (
     <div className="certs-outer" id="certifications">
@@ -589,10 +542,6 @@ function Certifications() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   CONTACT
-═══════════════════════════════════════════════════════════════════ */
 function Contact() {
   return (
     <div className="contact-outer" id="contact">
@@ -664,10 +613,6 @@ function Contact() {
   );
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════
-   APP
-═══════════════════════════════════════════════════════════════════ */
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   useReveal();
@@ -680,10 +625,8 @@ export default function App() {
 
   return (
     <>
-      
       <Cursor />
       <Nav scrolled={scrolled} />
-
       <Hero />
       <Marquee />
       <About />
@@ -691,7 +634,6 @@ export default function App() {
       <Projects />
       <Certifications />
       <Contact />
-
       <footer className="footer">
         <span className="footer-logo">Abhishek S Bikkannavar<span className="dot">.</span></span>
         <p>Frontend Developer · Bangalore, India</p>
